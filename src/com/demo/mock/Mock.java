@@ -38,6 +38,10 @@ public class Mock {
     return "{\"data\": {\"id\": 27,\"name\": \"Roger\"}}";
   }
 
+  public String fakeArrayResponse() {
+    return "[{\"id\":1,\"name\":\"Esteban\",\"professions\":[\"Professor\",\"Developer\"]},{\"id\":2,\"name\":\"Raul\",\"professions\":[\"Chemist\",\"Plant manager\"]}]";
+  }
+
   public String fakeListResponse() {
     return "[{\"id\":78945,\"name\":\"John\"},{\"id\":25897,\"name\":\"Andrew\"},{\"id\":35981,\"name\":\"Joe\"}]";
   }

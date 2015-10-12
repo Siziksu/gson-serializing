@@ -18,6 +18,7 @@ public class Main {
 
   private String fakeResponse;
   private String fakeDataResponse;
+  private String fakeArrayResponse;
   private String fakeListResponse;
   private String fakeComplexResponse;
   private String fakeListComplexResponse;
@@ -25,6 +26,7 @@ public class Main {
   private Response userResponse;
   private Data dataResponse;
   private DataGenerics<User> genericsResponse;
+  private User[] userArrayResponse;
   private List<Response> listResponse;
   private ComplexResponse complexResponse;
   private List<ComplexResponse> listComplexResponse;
@@ -38,6 +40,7 @@ public class Main {
     // Json Strings
     fakeResponse = Mock.getInstance().fakeResponse();
     fakeDataResponse = Mock.getInstance().fakeDataResponse();
+    fakeArrayResponse = Mock.getInstance().fakeArrayResponse();
     fakeListResponse = Mock.getInstance().fakeListResponse();
     fakeComplexResponse = Mock.getInstance().fakeComplexResponse();
     fakeListComplexResponse = Mock.getInstance().fakeListComplexResponse();
@@ -45,6 +48,7 @@ public class Main {
     // Json Strings to Java Objects
     userResponse = gson.fromJson(fakeResponse, Response.class);
     dataResponse = gson.fromJson(fakeDataResponse, Data.class);
+    userArrayResponse = gson.fromJson(fakeArrayResponse, User[].class);
     genericsResponse = gson.fromJson(fakeDataResponse, new TypeToken<DataGenerics<User>>() {}.getType());
     listResponse = gson.fromJson(fakeListResponse, new TypeToken<List<Response>>() {}.getType());
     complexResponse = gson.fromJson(fakeComplexResponse, ComplexResponse.class);
@@ -67,6 +71,7 @@ public class Main {
     System.out.println("<Fake Responses>");
     System.out.println("response: " + fakeResponse);
     System.out.println("data response: " + fakeDataResponse);
+    System.out.println("user array response: " + fakeArrayResponse);
     System.out.println("list response: " + fakeListResponse);
     System.out.println("complex response: " + fakeComplexResponse);
     System.out.println("list complex response: " + fakeListComplexResponse);
@@ -86,6 +91,15 @@ public class Main {
     System.out.println("<Data Generics Response>");
     System.out.println("user id: " + genericsResponse.data.id + ", name: " + genericsResponse.data.name);
     System.out.println("</Data Generics Response>");
+    System.out.println();
+    System.out.println("<Array Response>");
+    for (User user : userArrayResponse) {
+      System.out.println("user id: " + user.id + ", name: " + user.name);
+      for (String profession : user.professions) {
+        System.out.println("profession: " + profession);
+      }
+    }
+    System.out.println("</Array Response>");
     System.out.println();
     System.out.println("<List Response>");
     for (Response lr : listResponse) {
